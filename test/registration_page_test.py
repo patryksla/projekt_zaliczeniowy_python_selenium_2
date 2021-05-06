@@ -46,6 +46,7 @@ class RegistrationPageTest(BaseTest):
         rp.accept_agreement()
         rp.accept_rodo()
         rp.create_account()
+        rp.verify_visible_errors(1, "Podany adres email jest nieprawidłowy")
 
 sleep(20)
 

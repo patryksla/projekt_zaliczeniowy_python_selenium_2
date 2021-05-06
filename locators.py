@@ -25,4 +25,6 @@ class RegistrationPageLocators():
     ACCEPT_AGREEMENT1 = (By.XPATH, '//*[@id="createAccountForm_instance_51"]/table/tbody/tr[51]/td[2]/div/div[1]/div')
     ACCEPT_RODO = (By.XPATH, '//*[@id="createAccountForm_instance_51"]/table/tbody/tr[53]/td[2]/div/div[1]/div/div')
     CREATE_ACCOUNT = (By.XPATH, '//*[@id="createAccountForm_instance_51"]/table/tbody/tr[54]/td[2]/input')
+    ERROR_MESSAGES_DIV = (By.XPATH, '//div[@class="error system-message"]/b')
+
 

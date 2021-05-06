@@ -86,3 +86,20 @@ class RegistrationPage(BasePage):
         self.driver.implicitly_wait(60)
         element = self.driver.find_element(*RegistrationPageLocators.CREATE_ACCOUNT)
         element.click()
+
+    def verify_visible_errors(self, number_of_errors, error_texts):
+
+        error_texts = list(error_texts)
+        error_messages = self.driver.find_elements(*RegistrationPageLocators.ERROR_MESSAGES_DIV)
+
+        visible_error_messages = []
+
+        for error in error_messages:
+            if error.is_displayed():
+                visible_error_messages.append(error)
+        assert len(visible_error_messages) == number_of_errors
+        error_text_fact = []
+        for i in range(len(visible_error_messages)):
+            error_text_fact.append(visible_error_messages[i].text)
+
+        assert error_texts == error_text_fact
