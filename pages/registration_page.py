@@ -97,6 +97,8 @@ class RegistrationPage(BasePage):
         for error in error_messages:
             if error.is_displayed():
                 visible_error_messages.append(error)
+        print(visible_error_messages, "Widoczne błędy")
+        print(number_of_errors, "liczba błędów")
         assert len(visible_error_messages) == number_of_errors
         error_text_fact = []
         for i in range(len(visible_error_messages)):

@@ -11,7 +11,7 @@ valid_street = "Szkolna"
 valid_building_number = "8"
 valid_postal_code = "00-100"
 valid_city = "Warszawa"
-valid_phone_number = "+48783546228"
+valid_phone_number = "783546228"
 invalid_email ="piotr2.com"
 valid_password = "Qwerty123!"
 valid_password_confirmation = "Qwerty123!"
@@ -46,7 +46,7 @@ class RegistrationPageTest(BaseTest):
         rp.accept_agreement()
         rp.accept_rodo()
         rp.create_account()
-        rp.verify_visible_errors(1, "Podany adres email jest nieprawidłowy")
+        rp.verify_visible_errors(1, ["Podany adres email jest nieprawidłowy"])
 
 sleep(20)
 
