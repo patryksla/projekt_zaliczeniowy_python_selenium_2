@@ -13,8 +13,12 @@ valid_postal_code = "00-100"
 valid_city = "Warszawa"
 valid_phone_number = "783546228"
 invalid_email ="piotr2.com"
+valid_email = "emailtestowy@wp.pl"
 valid_password = "Qwerty123!"
 valid_password_confirmation = "Qwerty123!"
+invalid_password = "qwe"
+invalid_password_confirmation = "qwe"
+
 
 class RegistrationPageTest(BaseTest):
 
@@ -47,6 +51,82 @@ class RegistrationPageTest(BaseTest):
         rp.accept_rodo()
         rp.create_account()
         rp.verify_visible_errors(1, ["Podany adres email jest nieprawidłowy"])
+
+    def test_empty_name(self):
+        rp = RegistrationPage(self.driver)
+        rp.fill_surname(valid_surname)
+        rp.choose_nationality()
+        rp.voivodeship()
+        rp.fill_street(valid_street)
+        rp.fill_building_number(valid_building_number)
+        rp.fill_postal_code(valid_postal_code)
+        rp.fill_city(valid_city)
+        rp.fill_phone_number(valid_phone_number)
+        rp.fill_email(valid_email)
+        rp.fill_password(valid_password)
+        rp.fill_password_confirmation(valid_password_confirmation)
+        rp.accept_agreement()
+        rp.accept_rodo()
+        rp.create_account()
+        rp.verify_visible_errors(1, ["Podaj imię"])
+
+    def test_empty_surname(self):
+        rp = RegistrationPage(self.driver)
+        rp.fill_name(valid_name)
+        rp.choose_nationality()
+        rp.voivodeship()
+        rp.fill_street(valid_street)
+        rp.fill_building_number(valid_building_number)
+        rp.fill_postal_code(valid_postal_code)
+        rp.fill_city(valid_city)
+        rp.fill_phone_number(valid_phone_number)
+        rp.fill_email(valid_email)
+        rp.fill_password(valid_password)
+        rp.fill_password_confirmation(valid_password_confirmation)
+        rp.accept_agreement()
+        rp.accept_rodo()
+        rp.create_account()
+        rp.verify_visible_errors(1, ["Podaj nazwisko"])
+
+    def test_space_like_a_street(self):
+        rp = RegistrationPage(self.driver)
+        rp.fill_name(valid_name)
+        rp.fill_surname(valid_surname)
+        rp.choose_nationality()
+        rp.voivodeship()
+        rp.fill_street(" ")
+        rp.fill_building_number(valid_building_number)
+        rp.fill_postal_code(valid_postal_code)
+        rp.fill_city(valid_city)
+        rp.fill_phone_number(valid_phone_number)
+        rp.fill_email(valid_email)
+        rp.fill_password(valid_password)
+        rp.fill_password_confirmation(valid_password_confirmation)
+        rp.accept_agreement()
+        rp.accept_rodo()
+        rp.create_account()
+        rp.verify_visible_errors(1, ["Podaj ulicę"])
+
+    def test_incorrect_password(self):
+        rp = RegistrationPage(self.driver)
+        rp.fill_name(valid_name)
+        rp.fill_surname(valid_surname)
+        rp.choose_nationality()
+        rp.voivodeship()
+        rp.fill_street(valid_street)
+        rp.fill_building_number(valid_building_number)
+        rp.fill_postal_code(valid_postal_code)
+        rp.fill_city(valid_city)
+        rp.fill_phone_number(valid_phone_number)
+        rp.fill_email(valid_email)
+        rp.fill_password(invalid_password)
+        rp.fill_password_confirmation(invalid_password_confirmation)
+        rp.accept_agreement()
+        rp.accept_rodo()
+        rp.create_account()
+        rp.verify_visible_errors(1, ["Podane hasło jest zbyt krótkie! Hasło musi zawierać przynajmniej 8 znaków"])
+
+
 
 sleep(20)
 
